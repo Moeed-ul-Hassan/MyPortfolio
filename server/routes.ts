@@ -1,41 +1,55 @@
-import type { Express } from "express";
-import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { contactSchema } from "@shared/schema";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form submission endpoint
-  app.post('/api/contact', async (req, res) => {
+import express, { type Request, Response } from "express";
+import http from "http";
+import { z } from "zod";
+import { contactSchema } from "../shared/schema";
+
+// Mock data for contact messages
+const mockContactMessages = [];
+
+export async function registerRoutes(app: express.Express) {
+  const server = http.createServer(app);
+
+  const router = express.Router();
+
+  // Contact form endpoint
+  router.post('/contact', async (req: Request, res: Response) => {
     try {
-      // Validate the request body
-      const result = contactSchema.safeParse(req.body);
+      const validatedData = contactSchema.parse(req.body);
       
-      if (!result.success) {
-        return res.status(400).json({ 
-          message: "Invalid form data", 
-          errors: result.error.errors 
-        });
-      }
-      
-      // Store the contact message
-      const contact = await storage.createContactMessage({
-        name: result.data.name,
-        email: result.data.email,
-        subject: result.data.subject,
-        message: result.data.message
+      // Store in mock data instead of database
+      mockContactMessages.push({
+        ...validatedData,
+        id: mockContactMessages.length + 1,
+        createdAt: new Date()
       });
       
       return res.status(201).json({ 
-        message: "Message sent successfully", 
-        id: contact.id 
+        message: 'Message sent successfully',
+        success: true 
       });
     } catch (error) {
-      console.error('Error in contact form submission:', error);
-      return res.status(500).json({ message: "Failed to send message" });
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: 'Validation error', 
+          errors: error.errors,
+          success: false 
+        });
+      }
+      
+      return res.status(500).json({ 
+        message: 'Failed to send message', 
+        success: false 
+      });
     }
   });
 
-  const httpServer = createServer(app);
+  // Simple health check endpoint
+  router.get('/health', (_req: Request, res: Response) => {
+    return res.status(200).json({ status: 'ok' });
+  });
 
-  return httpServer;
+  app.use('/api', router);
+
+  return server;
 }
