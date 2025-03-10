@@ -1,7 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
-const CustomScroll: React.FC = () => {
+interface CustomScrollProps {
+  useNativeScroll?: boolean;
+}
+
+const CustomScroll: React.FC<CustomScrollProps> = ({ 
+  useNativeScroll = false // Default to using custom scroll behavior 
+}) => {
   const [scrollY, setScrollY] = useState(0);
   const [documentHeight, setDocumentHeight] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(0);
@@ -83,6 +89,9 @@ const CustomScroll: React.FC = () => {
 
   // Override default wheel behavior for smoother scrolling
   useEffect(() => {
+    // Skip custom scroll behavior if native scrolling is enabled
+    if (useNativeScroll) return;
+    
     // Microsoft/Google-like smooth scroll
     const smoothWheel = (e: Event) => {
       const wheelEvent = e as WheelEvent;
@@ -92,7 +101,14 @@ const CustomScroll: React.FC = () => {
       wheelEvent.preventDefault();
       
       const delta = wheelEvent.deltaY;
-      const speed = 1.5; // Adjust for faster/slower scrolling
+      
+      // Detect if it's likely a trackpad/touchpad (two-finger gesture)
+      // Trackpad typically produces smaller delta values with higher frequency
+      const isTouchpad = Math.abs(delta) < 10;
+      
+      // Adjust speed based on input device
+      // Much higher speed for touchpad/trackpad, moderate for mouse wheel
+      const speed = isTouchpad ? 8.0 : 1.5;
       
       // Smooth scrolling with easing
       window.scrollBy({
@@ -101,13 +117,13 @@ const CustomScroll: React.FC = () => {
       });
     };
     
-    // Add event listener with correct type
+    // Only add the custom scroll behavior if useNativeScroll is false
     document.addEventListener('wheel', smoothWheel, { passive: false } as EventListenerOptions);
     
     return () => {
       document.removeEventListener('wheel', smoothWheel, { passive: false } as EventListenerOptions);
     };
-  }, []);
+  }, [useNativeScroll]);
 
   // Dots that appear during scrolling (like Google loading animation)
   const renderScrollIndicatorDots = () => {
