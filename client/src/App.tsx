@@ -8,6 +8,8 @@ import CustomScroll from "@/components/ui/custom-scroll";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import { Button } from "@/components/ui/button";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 function Router() {
   return (
@@ -44,29 +46,37 @@ function App() {
   }, []);
   
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Custom cursor component */}
-      <CustomCursor />
-      
-      {/* Custom scroll component with native scroll option */}
-      <CustomScroll useNativeScroll={useNativeScroll} />
-      
-      {/* Scroll behavior toggle button */}
-      <Button
-        className="fixed right-4 top-4 z-50 text-xs py-1 px-2 h-auto"
-        variant="outline"
-        size="sm"
-        onClick={() => setUseNativeScroll(prev => !prev)}
-      >
-        {useNativeScroll ? "Enable Custom Scroll" : "Use Native Scroll"}
-      </Button>
-      
-      {/* Hide default cursor */}
-      <div className={`cursor-none custom-scroll ${useNativeScroll ? 'native-scroll' : ''}`}>
-        <Router />
-        <Toaster />
-      </div>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        {/* Custom cursor component */}
+        <CustomCursor />
+        
+        {/* Custom scroll component with native scroll option */}
+        <CustomScroll useNativeScroll={useNativeScroll} />
+        
+        {/* Controls area in top-right */}
+        <div className="fixed right-4 top-4 z-50 flex items-center space-x-2">
+          {/* Theme toggle component */}
+          <ThemeToggle />
+          
+          {/* Scroll behavior toggle button */}
+          <Button
+            className="text-xs py-1 px-2 h-auto"
+            variant="outline"
+            size="sm"
+            onClick={() => setUseNativeScroll(prev => !prev)}
+          >
+            {useNativeScroll ? "Custom Scroll" : "Native Scroll"}
+          </Button>
+        </div>
+        
+        {/* Hide default cursor */}
+        <div className={`cursor-none custom-scroll ${useNativeScroll ? 'native-scroll' : ''}`}>
+          <Router />
+          <Toaster />
+        </div>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
