@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
+import { ArrowUp } from 'lucide-react';
 
 interface CustomScrollProps {
   useNativeScroll?: boolean;
@@ -8,6 +10,7 @@ interface CustomScrollProps {
 const CustomScroll: React.FC<CustomScrollProps> = ({ 
   useNativeScroll = false // Default to using custom scroll behavior 
 }) => {
+  const { theme } = useTheme();
   const [scrollY, setScrollY] = useState(0);
   const [documentHeight, setDocumentHeight] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(0);
@@ -127,6 +130,14 @@ const CustomScroll: React.FC<CustomScrollProps> = ({
 
   // Dots that appear during scrolling (like Google loading animation)
   const renderScrollIndicatorDots = () => {
+    // Google colors with dark theme adjustments
+    const dotColors = [
+      theme === 'dark' ? 'bg-blue-400' : 'bg-blue-500',
+      theme === 'dark' ? 'bg-red-400' : 'bg-red-500',
+      theme === 'dark' ? 'bg-amber-300' : 'bg-yellow-500',
+      theme === 'dark' ? 'bg-green-400' : 'bg-green-500'
+    ];
+    
     return (
       <motion.div 
         className="fixed right-4 md:right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col items-center"
@@ -137,12 +148,7 @@ const CustomScroll: React.FC<CustomScrollProps> = ({
         {[0, 1, 2, 3].map((index) => (
           <motion.div
             key={index}
-            className={`w-2 h-2 rounded-full my-1 ${
-              index === 0 ? 'bg-blue-500' :
-              index === 1 ? 'bg-red-500' :
-              index === 2 ? 'bg-yellow-500' :
-              'bg-green-500'
-            }`}
+            className={`w-2 h-2 rounded-full my-1 ${dotColors[index]}`}
             initial={{ scale: 0.5, opacity: 0.7 }}
             animate={{
               scale: [0.5, 1, 0.5],
@@ -174,7 +180,7 @@ const CustomScroll: React.FC<CustomScrollProps> = ({
     return (
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ 
           opacity: scrollPercentage > 20 ? 1 : 0,
@@ -184,9 +190,7 @@ const CustomScroll: React.FC<CustomScrollProps> = ({
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m18 15-6-6-6 6"/>
-        </svg>
+        <ArrowUp size={20} />
       </motion.button>
     );
   };
@@ -200,6 +204,9 @@ const CustomScroll: React.FC<CustomScrollProps> = ({
       const sectionElements = Array.from(document.querySelectorAll('section[id]')) as HTMLElement[];
       setSections(sectionElements);
     }, [documentHeight]);
+    
+    // Only show if there are sections with IDs
+    if (sections.length === 0) return null;
     
     return (
       <motion.div 

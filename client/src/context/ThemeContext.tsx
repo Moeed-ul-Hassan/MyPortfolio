@@ -1,41 +1,47 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark' | 'system';
+// Define theme types
+export type Theme = 'light' | 'dark' | 'system';
 
-interface ThemeContextType {
+// Define the context shape
+export interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+// Create the context with a default value
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'system',
+  setTheme: () => null,
+});
 
+// Hook for consuming the theme context
+export function useTheme() {
+  return useContext(ThemeContext);
+}
+
+// Props for the provider component
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  // Initialize theme from localStorage or default to 'system'
-  const [theme, setTheme] = useState<Theme>(() => {
-    // Try to get the saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
-      return savedTheme;
-    }
-    // Default to system
-    return 'system';
-  });
+// Theme provider component
+export function ThemeProvider({ children }: ThemeProviderProps) {
+  // Get the theme from localStorage or default to system
+  const [theme, setTheme] = useState<Theme>(
+    () => (localStorage.getItem('theme') as Theme) || 'system'
+  );
 
-  // Update classList and localStorage when theme changes
+  // Apply theme class to document element
   useEffect(() => {
     const root = window.document.documentElement;
     
-    // Remove old theme classes
+    // Remove any previous theme classes
     root.classList.remove('light', 'dark');
-    
-    // Save the theme preference to localStorage
-    localStorage.setItem('theme', theme);
 
-    // Apply theme based on selection
+    // Store the current theme choice
+    localStorage.setItem('theme', theme);
+    
     if (theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
@@ -46,38 +52,26 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }
   }, [theme]);
 
-  // Watch for system theme changes
+  // Listen for system theme changes when in 'system' mode
   useEffect(() => {
     if (theme !== 'system') return;
-
+    
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
-    // Initial check
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(mediaQuery.matches ? 'dark' : 'light');
-    
-    // Watch for changes
     const handleChange = () => {
+      const root = window.document.documentElement;
       root.classList.remove('light', 'dark');
       root.classList.add(mediaQuery.matches ? 'dark' : 'light');
     };
-
+    
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
+  // Provide the theme context to children
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-};
-
-export const useTheme = (): ThemeContextType => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
+}
