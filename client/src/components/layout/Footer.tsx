@@ -1,52 +1,41 @@
-
-import { Button } from "../ui/button";
 import { Container } from "../ui/container";
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
-  
+export function Footer() {
   return (
-    <footer className="border-t border-border/40 py-8 mt-20">
+    <footer className="border-t py-6 md:py-8">
       <Container>
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} Your Name. All rights reserved.
+              &copy; {new Date().getFullYear()} Your Portfolio. All rights reserved.
             </p>
           </div>
-          
-          <div className="flex items-center gap-4">
+          <div className="flex gap-4">
             <a 
               href="https://github.com/yourusername" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-foreground/70 hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-foreground"
             >
-              <i className="fab fa-github text-xl"></i>
+              GitHub
             </a>
             <a 
               href="https://linkedin.com/in/yourusername" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-foreground/70 hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-foreground"
             >
-              <i className="fab fa-linkedin text-xl"></i>
+              LinkedIn
             </a>
             <a 
               href="https://twitter.com/yourusername" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-foreground/70 hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-foreground"
             >
-              <i className="fab fa-twitter text-xl"></i>
+              Twitter
             </a>
           </div>
-          
-          <Button variant="ghost" size="sm" asChild>
-            <a href="#hero" className="text-sm text-muted-foreground">
-              Back to top <i className="fas fa-arrow-up ml-1"></i>
-            </a>
-          </Button>
         </div>
       </Container>
     </footer>
