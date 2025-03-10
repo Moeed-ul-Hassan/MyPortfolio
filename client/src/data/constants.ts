@@ -68,6 +68,19 @@ export const skills = [
 // Projects
 export const projects = [
   {
+    image: 'https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
+    title: 'ImageCut AI',
+    description: 'A MERN stack application that uses AI to remove backgrounds from images. Users can upload images, process them with the AI model, and download the results with transparent backgrounds.',
+    tags: ['MongoDB', 'Express', 'React', 'Node.js', 'AI/ML'],
+    projectUrl: '#',
+    githubUrl: 'https://github.com/',
+    demoUrl: '#',
+    category: {
+      name: 'Web App',
+      color: 'bg-primary/90'
+    }
+  },
+  {
     image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
     title: 'Task Buddy',
     description: 'A local services app where users can create accounts and offer services. Features include chat functionality, home services listings, and order placement.',
