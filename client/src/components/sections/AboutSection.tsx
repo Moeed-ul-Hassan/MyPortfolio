@@ -64,8 +64,8 @@ const AboutSection: React.FC = () => {
               </div>
               
               <p className="text-foreground/70">
-                I'm a MERN stack developer based in Pakistan with a passion for creating elegant, efficient, and user-friendly web applications.
-                I specialize in building full-stack applications using MongoDB, Express.js, React, and Node.js.
+                I'm a React and Node.js developer based in Pakistan with a passion for creating elegant, efficient, and user-friendly web applications.
+                I specialize in building full-stack applications using React and Node.js.
               </p>
               
               <p className="text-foreground/70">

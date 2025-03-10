@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
             </h1>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-heading font-semibold text-foreground/80 mb-6">
               <span className="text-gradient">
-                MERN Stack Developer
+                React & Node.js Developer
               </span>
             </h2>
             <p className="text-foreground/70 text-base md:text-lg max-w-lg mb-8">
