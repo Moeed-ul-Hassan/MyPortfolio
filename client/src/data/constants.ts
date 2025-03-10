@@ -46,22 +46,10 @@ export const skills = [
     tags: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Firebase']
   },
   {
-    icon: 'fas fa-cogs',
-    title: 'DevOps & Deployment',
-    description: 'Setting up CI/CD pipelines and managing cloud infrastructure.',
-    tags: ['Docker', 'AWS', 'Azure', 'GitHub Actions', 'Kubernetes']
-  },
-  {
     icon: 'fas fa-paint-brush',
     title: 'UI/UX Design',
     description: 'Creating visually appealing and user-friendly interfaces and experiences.',
     tags: ['Figma', 'Adobe XD', 'Sketch', 'Prototyping', 'Wireframing']
-  },
-  {
-    icon: 'fas fa-mobile-alt',
-    title: 'Mobile Development',
-    description: 'Building cross-platform and native mobile applications.',
-    tags: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Expo']
   }
 ];
 
