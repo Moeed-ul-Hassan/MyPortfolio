@@ -68,10 +68,10 @@ export const skills = [
 // Projects
 export const projects = [
   {
-    image: 'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
-    title: 'E-commerce Platform',
-    description: 'A feature-rich e-commerce platform with advanced product filtering, cart functionality, and secure checkout process.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
+    title: 'Task Buddy',
+    description: 'A local services app where users can create accounts and offer services. Features include chat functionality, home services listings, and order placement.',
+    tags: ['React', 'Node.js'],
     projectUrl: '#',
     githubUrl: 'https://github.com/',
     demoUrl: '#',
@@ -81,49 +81,10 @@ export const projects = [
     }
   },
   {
-    image: 'https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
-    title: 'Task Management App',
-    description: 'A productivity application designed to help teams organize tasks, track progress, and collaborate effectively.',
-    tags: ['React Native', 'Firebase', 'Redux', 'Express'],
-    projectUrl: '#',
-    githubUrl: 'https://github.com/',
-    demoUrl: '#',
-    category: {
-      name: 'Mobile App',
-      color: 'bg-secondary/90'
-    }
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
-    title: 'Social Media Dashboard',
-    description: 'A comprehensive analytics dashboard for tracking and managing social media performance across multiple platforms.',
-    tags: ['Vue.js', 'D3.js', 'Python', 'AWS'],
-    projectUrl: '#',
-    githubUrl: 'https://github.com/',
-    demoUrl: '#',
-    category: {
-      name: 'Dashboard',
-      color: 'bg-accent/90'
-    }
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1586280268958-9483002d016a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
-    title: 'Fitness Tracking App',
-    description: 'A mobile application that helps users track workouts, set fitness goals, and monitor progress over time.',
-    tags: ['Flutter', 'Firebase', 'HealthKit', 'Google Fit'],
-    projectUrl: '#',
-    githubUrl: 'https://github.com/',
-    demoUrl: '#',
-    category: {
-      name: 'Mobile App',
-      color: 'bg-secondary/90'
-    }
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
-    title: 'Real Estate Platform',
-    description: 'A comprehensive property listing and management platform with advanced search, virtual tours, and appointment scheduling.',
-    tags: ['Next.js', 'GraphQL', 'PostgreSQL', 'Mapbox'],
+    image: 'https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
+    title: 'Resumify',
+    description: 'A resume-building web application designed to help users create professional and ATS-friendly resumes with customizable templates and guided input fields.',
+    tags: ['React', 'Node.js'],
     projectUrl: '#',
     githubUrl: 'https://github.com/',
     demoUrl: '#',
@@ -133,16 +94,16 @@ export const projects = [
     }
   },
   {
-    image: 'https://images.unsplash.com/photo-1601387133938-a9766dadab1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
-    title: 'AI Customer Support Chatbot',
-    description: 'An intelligent chatbot that uses natural language processing to provide customer support and answer common questions.',
-    tags: ['Python', 'TensorFlow', 'React', 'FastAPI'],
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80',
+    title: 'Insta Clone',
+    description: 'A social media app inspired by Instagram, where users can upload posts, like, comment, and follow other users with real-time updates.',
+    tags: ['React', 'Node.js'],
     projectUrl: '#',
     githubUrl: 'https://github.com/',
     demoUrl: '#',
     category: {
-      name: 'AI Project',
-      color: 'bg-accent/90'
+      name: 'Web App',
+      color: 'bg-primary/90'
     }
   }
 ];

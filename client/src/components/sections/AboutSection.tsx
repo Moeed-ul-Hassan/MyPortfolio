@@ -6,22 +6,22 @@ const aboutInfoItems = [
   {
     icon: 'fas fa-graduation-cap',
     title: 'Education',
-    description: 'MSc in Computer Science'
+    description: 'Computer Science'
   },
   {
     icon: 'fas fa-briefcase',
     title: 'Experience',
-    description: '10+ Years in Industry'
+    description: 'MERN Stack Development'
   },
   {
     icon: 'fas fa-map-marker-alt',
     title: 'Location',
-    description: 'San Francisco, CA'
+    description: 'Pakistan'
   },
   {
     icon: 'fas fa-language',
     title: 'Languages',
-    description: 'English, Spanish'
+    description: 'English, Urdu'
   }
 ];
 
@@ -64,14 +64,14 @@ const AboutSection: React.FC = () => {
               </div>
               
               <p className="text-foreground/70">
-                I'm a full-stack developer with a passion for creating elegant, efficient, and user-friendly applications. 
-                With over 10 years of experience in the tech industry, I've developed a deep understanding 
-                of various programming languages, frameworks, and development methodologies.
+                I'm a MERN stack developer based in Pakistan with a passion for creating elegant, efficient, and user-friendly web applications.
+                I specialize in building full-stack applications using MongoDB, Express.js, React, and Node.js.
               </p>
               
               <p className="text-foreground/70">
                 My approach to development is centered around understanding the core problems that need to be solved 
                 and creating solutions that are not only technically sound but also provide an exceptional user experience.
+                I enjoy working on projects that make a positive impact on people's lives.
               </p>
               
               <div className="grid grid-cols-2 gap-4 mt-8">

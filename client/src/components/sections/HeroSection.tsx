@@ -16,11 +16,11 @@ const HeroSection: React.FC = () => {
           >
             <p className="text-primary font-medium mb-2">Hello, I'm</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-4">
-              John <span className="text-primary">Doe</span>
+              Moeed ul <span className="text-primary">Hassan</span>
             </h1>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-heading font-semibold text-foreground/80 mb-6">
               <span className="text-gradient">
-                Full Stack Developer
+                MERN Stack Developer
               </span>
             </h2>
             <p className="text-foreground/70 text-base md:text-lg max-w-lg mb-8">
